@@ -73,10 +73,10 @@ class CadernoController extends Controller
     {
         //
         if ($caderno->noticias()->count() > 0) {
-            return redirect()->array('/caderno')->with('error', 'Caderno possui dependentes');
+            return redirect()->array('/cadernos')->with('error', 'Caderno possui dependentes');
          }else{
             $estados->delete();
-            return redirect()->array('/caderno')->with('success', 'Caderno destruido com sucesso!');
+            return redirect()->array('/cadernos')->with('success', 'Caderno destruido com sucesso!');
         }
     }
 }

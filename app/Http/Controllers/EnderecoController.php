@@ -74,7 +74,7 @@ class EnderecoController extends Controller
     public function destroy(Endereco $endereco)
     {
         //
-        if ($enderecos->negocios()->count() > 0 || $enderecos->ponto_turisticos()->count() > 0) {
+        if ($endereco->negocios()->count() > 0 || $enderecos->ponto_turisticos()->count() > 0) {
             return redirect()->array('/enderecos')->with('error', 'Endereco possui dependentes');
          }else{
             $endereco->delete();

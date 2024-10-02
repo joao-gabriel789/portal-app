@@ -43,7 +43,7 @@ class AutorController extends Controller
     public function show(Autor $autor)
     {
         //
-        return view('admin.autores.show', compact('autores'));
+        return view('admin.autores.show', compact('autor'));
     }
 
     /**
@@ -52,7 +52,7 @@ class AutorController extends Controller
     public function edit(Autor $autor)
     {
         //
-        return view('admin.autores.edit', compact('autores'));
+        return view('admin.autores.edit', compact('autor'));
     }
 
     /**
@@ -71,10 +71,10 @@ class AutorController extends Controller
     public function destroy(Autor $autor)
     {
         //
-        if ($autores->noticias()->count() > 0) {
-           return redirect()->array('/noticias')->with('error', 'Caderno possui dependentes');
+        if ($autor->noticias()->count() > 0) {
+           return redirect()->array('/autores')->with('error', 'Autor possui dependentes');
         }else{
-            $noticia->delete();
+            $autor->delete();
             return redirect()->array('/autores')->with('success', 'Autor destruido com sucesso!');
         }
     }
