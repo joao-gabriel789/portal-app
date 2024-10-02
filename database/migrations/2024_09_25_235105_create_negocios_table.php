@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('negocios', function (Blueprint $table) {
             $table->id();
+            $table->string("nomeFantasia");
+            $table->string("contato");
+            $table->string("latitude_longitude");
+            $table->text("descricao");
+            $table->boolean("ativo");
+            $table->unsignedBigInteger('id_tipo_negocio');
+            $table->foreign('id_tipo_negocio')->references('id')->on('tipo_negocios')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('id_endereco');
+            $table->foreign('id_endereco')->references('id')->on('enderecos')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

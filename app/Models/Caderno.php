@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Caderno extends Model
 {
     use HasFactory;
+
+    protected $fillabe = ['nome'];
 }

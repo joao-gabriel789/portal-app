@@ -14,6 +14,8 @@ class PontoTuristicoController extends Controller
     public function index()
     {
         //
+        $pontoTuristico = PontoTuristico::paginate(25);
+        return view('admin.pontoTuristicos.index', compact('ponto_turisticos'));
     }
 
     /**
@@ -22,6 +24,9 @@ class PontoTuristicoController extends Controller
     public function create()
     {
         //
+        $tipoPontoTuristico = TipoPontoTuristico::all();
+        $enderecos = Endereco::all();
+        return view('admin.pontoTuristicos.create', compact('enderecos','tipoPontoTuristico'));
     }
 
     /**
@@ -30,6 +35,8 @@ class PontoTuristicoController extends Controller
     public function store(StorePontoTuristicoRequest $request)
     {
         //
+        PontoTuristico::create($request->all());
+        return redirect()->array('/pontoTuristicos')->with('success', 'Ponto turistico criado com sucesso!');
     }
 
     /**
@@ -38,6 +45,7 @@ class PontoTuristicoController extends Controller
     public function show(PontoTuristico $pontoTuristico)
     {
         //
+        return view('admin.pontoTuristicos.show', compact('ponto_turisticos'));
     }
 
     /**
@@ -46,6 +54,9 @@ class PontoTuristicoController extends Controller
     public function edit(PontoTuristico $pontoTuristico)
     {
         //
+        $tipoPontoTuristico = TipoPontoTuristico::all();
+        $enderecos = Endereco::all();
+        return view('admin.pontoTuristicos.edit', compact('ponto_turisticos','enderecos','tipoPontoTuristico'));
     }
 
     /**
@@ -54,6 +65,8 @@ class PontoTuristicoController extends Controller
     public function update(UpdatePontoTuristicoRequest $request, PontoTuristico $pontoTuristico)
     {
         //
+        $pontoTuristico->update($request->all());
+        return redirect()->array('/pontoTuristicos')->with('success', 'Ponto turistico atualizado com sucesso!');
     }
 
     /**
@@ -62,5 +75,7 @@ class PontoTuristicoController extends Controller
     public function destroy(PontoTuristico $pontoTuristico)
     {
         //
+        $pontoTuristico->delete();
+        return redirect()->array('/pontoTuristicos')->with('success', 'Ponto turistico destruido com sucesso!');
     }
 }

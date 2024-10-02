@@ -14,6 +14,8 @@ class EnderecoController extends Controller
     public function index()
     {
         //
+        $enderecos = Endereco::paginate(25);
+        return view('admin.enderecos.index', compact('enderecos'));
     }
 
     /**
@@ -22,6 +24,9 @@ class EnderecoController extends Controller
     public function create()
     {
         //
+        $cidades = Cidade::all();
+
+        return view('admin.enderecos.create', compact('cidades'));
     }
 
     /**
@@ -30,6 +35,8 @@ class EnderecoController extends Controller
     public function store(StoreEnderecoRequest $request)
     {
         //
+        Endereco::create($request->all());
+        return redirect()->array('/enderecos')->with('success', 'Endereco criado com sucesso!');
     }
 
     /**
@@ -38,6 +45,7 @@ class EnderecoController extends Controller
     public function show(Endereco $endereco)
     {
         //
+        return view('admin.endereco.show', compact('endereco'));
     }
 
     /**
@@ -46,6 +54,8 @@ class EnderecoController extends Controller
     public function edit(Endereco $endereco)
     {
         //
+        $cidades = Cidade::all();
+        return view('admin.enderecos.edit', compact('endereco','cidades'));
     }
 
     /**
@@ -54,6 +64,8 @@ class EnderecoController extends Controller
     public function update(UpdateEnderecoRequest $request, Endereco $endereco)
     {
         //
+        $endereco->update($request->all());
+        return redirect()->array('/enderecos')->with('success', 'Endereco atualizado com sucesso!');
     }
 
     /**
@@ -62,5 +74,11 @@ class EnderecoController extends Controller
     public function destroy(Endereco $endereco)
     {
         //
+        if ($enderecos->negocios()->count() > 0 || $enderecos->ponto_turisticos()->count() > 0) {
+            return redirect()->array('/enderecos')->with('error', 'Endereco possui dependentes');
+         }else{
+            $endereco->delete();
+            return redirect()->array('/enderecos')->with('success', 'Endereco destruido com sucesso!');
+        }
     }
 }

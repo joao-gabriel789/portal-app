@@ -14,6 +14,8 @@ class CidadeController extends Controller
     public function index()
     {
         //
+        $cidade = Cidade::paginate(25);
+        return view('admin.cidades.index', compact('cidades'));
     }
 
     /**
@@ -22,6 +24,9 @@ class CidadeController extends Controller
     public function create()
     {
         //
+        $estados = Estado::all();
+
+        return view('admin.cidades.create', compact('estados'));
     }
 
     /**
@@ -30,6 +35,8 @@ class CidadeController extends Controller
     public function store(StoreCidadeRequest $request)
     {
         //
+        Cidade::create($request->all());
+        return redirect()->array('/cidades')->with('success', 'Cidade criada com sucesso!');
     }
 
     /**
@@ -38,6 +45,7 @@ class CidadeController extends Controller
     public function show(Cidade $cidade)
     {
         //
+        return view('admin.cidades.show', compact('cidade'));
     }
 
     /**
@@ -46,6 +54,8 @@ class CidadeController extends Controller
     public function edit(Cidade $cidade)
     {
         //
+        $estados = Estado::all();
+        return view('admin.ciades.edit', compact('cidade','estados'));
     }
 
     /**
@@ -54,6 +64,8 @@ class CidadeController extends Controller
     public function update(UpdateCidadeRequest $request, Cidade $cidade)
     {
         //
+        $cidade->update($request->all());
+        return redirect()->array('/cidades')->with('success', 'Cidade atualizada com sucesso!');
     }
 
     /**
@@ -62,5 +74,11 @@ class CidadeController extends Controller
     public function destroy(Cidade $cidade)
     {
         //
+        if ($cidades->enderecos()->count() > 0) {
+            return redirect()->array('/cidades')->with('error', 'Cidade possui dependentes');
+         }else{
+            $cidade->delete();
+            return redirect()->array('/cidades')->with('success', 'Cidade destruido com sucesso!');
+        }
     }
 }

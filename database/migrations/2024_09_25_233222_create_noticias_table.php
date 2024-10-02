@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('noticias', function (Blueprint $table) {
             $table->id();
             $table->dateTime('data');
-            $table->string('titulo');
+            
             $table->string('subtitulo');
             $table->text('texto');
             $table->unsignedBigInteger('id_autor');
-            $table->foreign('id_autor')->references('id')->on('cadernos')->onDelete('cascade')->onUpdate('cascate');
+            $table->foreign('id_autor')->references('id')->on('autores')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('id_caderno');
+            $table->foreign('id_caderno')->references('id')->on('cadernos')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

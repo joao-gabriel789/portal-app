@@ -13,7 +13,9 @@ class NoticiaController extends Controller
      */
     public function index()
     {
-        //
+        //chamar rota
+        $noticias = Noticia::paginate(25);
+        return view('admin.noticias.index', compact('noticias'));
     }
 
     /**
@@ -22,6 +24,11 @@ class NoticiaController extends Controller
     public function create()
     {
         //
+        $autores = Autor::all();
+        $cadernos = Caderno::all();
+
+        return view('admin.noticias.create', compact('autores','cadernos'));
+
     }
 
     /**
@@ -30,6 +37,8 @@ class NoticiaController extends Controller
     public function store(StoreNoticiaRequest $request)
     {
         //
+        Noticia::create($request->all());
+        return redirect()->array('/noticias')->with('success', 'Noticia criada com sucesso!');
     }
 
     /**
@@ -38,6 +47,7 @@ class NoticiaController extends Controller
     public function show(Noticia $noticia)
     {
         //
+        return view('admin.noticias.show', compact('noticia'));
     }
 
     /**
@@ -46,6 +56,9 @@ class NoticiaController extends Controller
     public function edit(Noticia $noticia)
     {
         //
+        $autores = Autor::all();
+        $cadernos = Caderno::all();
+        return view('admin.noticias.edit', compact('noticia','autores','cadernos'));
     }
 
     /**
@@ -54,6 +67,8 @@ class NoticiaController extends Controller
     public function update(UpdateNoticiaRequest $request, Noticia $noticia)
     {
         //
+        $noticia->update($request->all());
+        return redirect()->array('/noticias')->with('success', 'Noticia atualizada com sucesso!');
     }
 
     /**
@@ -62,5 +77,7 @@ class NoticiaController extends Controller
     public function destroy(Noticia $noticia)
     {
         //
+        $noticia->delete();
+        return redirect()->array('/noticias')->with('success', 'Noticia destruido com sucesso!');
     }
 }

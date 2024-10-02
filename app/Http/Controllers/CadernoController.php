@@ -14,6 +14,9 @@ class CadernoController extends Controller
     public function index()
     {
         //
+        $cadernos = Caderno::all();
+
+        return view('admin.cadernos.index', compact('cadernos'));
     }
 
     /**
@@ -22,6 +25,7 @@ class CadernoController extends Controller
     public function create()
     {
         //
+        return view('admin.cadernos.create');
     }
 
     /**
@@ -30,6 +34,8 @@ class CadernoController extends Controller
     public function store(StoreCadernoRequest $request)
     {
         //
+        Caderno::create($request->all());
+        return redirect()->array('/caderno')->with('success', 'Caderno criado com sucesso!');
     }
 
     /**
@@ -38,6 +44,7 @@ class CadernoController extends Controller
     public function show(Caderno $caderno)
     {
         //
+        return view('admin.caderno.show', compact('caderno'));
     }
 
     /**
@@ -46,6 +53,7 @@ class CadernoController extends Controller
     public function edit(Caderno $caderno)
     {
         //
+        return view('admin.caderno.edit', compact('caderno'));
     }
 
     /**
@@ -54,6 +62,8 @@ class CadernoController extends Controller
     public function update(UpdateCadernoRequest $request, Caderno $caderno)
     {
         //
+        $caderno->update($request->all());
+        return redirect()->array('/caderno')->with('success', 'Caderno atualizado com sucesso!');
     }
 
     /**
@@ -62,5 +72,11 @@ class CadernoController extends Controller
     public function destroy(Caderno $caderno)
     {
         //
+        if ($caderno->noticias()->count() > 0) {
+            return redirect()->array('/caderno')->with('error', 'Caderno possui dependentes');
+         }else{
+            $estados->delete();
+            return redirect()->array('/caderno')->with('success', 'Caderno destruido com sucesso!');
+        }
     }
 }
