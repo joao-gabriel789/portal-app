@@ -10,4 +10,8 @@ class Caderno extends Model
     use HasFactory;
 
     protected $fillabe = ['nome'];
+    
+    public function noticias() {
+        return $this->hasMany(Noticia::class);
+    }
 }
