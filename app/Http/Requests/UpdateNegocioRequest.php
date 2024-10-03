@@ -11,7 +11,7 @@ class UpdateNegocioRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,13 @@ class UpdateNegocioRequest extends FormRequest
     {
         return [
             //
+            'nomeFantasia' => 'required|string|max:255', 
+            'contato' => 'required|string',
+            'latitude_longitude' => 'required|string|max:255',
+            'descricao' => 'required|text',
+            'ativo' => 'required|boolean',
+            'id_tipo_negocio' =>'required|exists:tipo_negocio,id',
+            'id_endereco' => 'required|exists:endereco,id'
         ];
     }
 }

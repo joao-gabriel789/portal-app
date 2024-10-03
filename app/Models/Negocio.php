@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Negocio extends Model
 {
     use HasFactory;
-    protected $fillabe = ['nomenomeFantasia', 'contato','latitude_longitude','descricao','ativo','id_tipo_negocio','id_endereco'];
+    protected $fillabe = ['nomeFantasia', 'contato','latitude_longitude','descricao','ativo','id_tipo_negocio','id_endereco'];
 
     public function tipoNegocio(){
         return $this->belongsTo(TipoNegocio::class, 'id_tipo_negocios');

@@ -11,7 +11,7 @@ class StoreEstadoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,7 @@ class StoreEstadoRequest extends FormRequest
     {
         return [
             //
+            'sigla' => 'required|string|min:2|max:2|unique:estados,sigla'
         ];
     }
 }

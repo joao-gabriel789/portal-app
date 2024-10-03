@@ -21,8 +21,17 @@ class UpdatePontoTuristicoRequest extends FormRequest
      */
     public function rules(): array
     {
+        $idPontoTuristico = $this->route('pontoTuristicos');
         return [
             //
+            'nome' => 'required|string|max:255|unique:pontoTuristico,nome,'.$idPontoTuristico,
+            'imagem' => 'required|string',
+            'longitude_latitude' => 'required|string',
+            'descricao' => 'required|text',
+            'como_chegar' => 'required|string',
+            'ativo' => 'required|boolean',
+            'id_tipo_ponto_turistico' => 'required|exists:tipo_ponto_turistico,id',
+            'id_endereco' => 'required|exists:endereco,id'
         ];
     }
 }
