@@ -40,27 +40,30 @@ class TipoPontoTuristicoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(TipoPontoTuristico $tipoPontoTuristico)
+    public function show($id)
     {
         //
+        $tipoPontoTuristico = TipoPontoTuristico::find($id);
         return view('admin.tipoPontoTuristicos.show', compact('tipo_ponto_turisticos'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(TipoPontoTuristico $tipoPontoTuristico)
+    public function edit($id)
     {
         //
+        $tipoPontoTuristico = TipoPontoTuristico::find($id);
         return view('admin.tipoPontoTuristicos.edit', compact('tipo_ponto_turisticos'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTipoPontoTuristicoRequest $request, TipoPontoTuristico $tipoPontoTuristico)
+    public function update(UpdateTipoPontoTuristicoRequest $request, $id)
     {
         //
+        $tipoPontoTuristico = TipoPontoTuristico::find($id);
         $tipoPontoTuristico->update($request->all());
         return redirect()->array('/tipoPontoTuristicos')->with('success', 'Tipo de ponto turistico atualizado com sucesso!');
     }
@@ -68,9 +71,10 @@ class TipoPontoTuristicoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TipoPontoTuristico $tipoPontoTuristico)
+    public function destroy($id)
     {
         //
+        $tipoPontoTuristico = TipoPontoTuristico::find($id);
         if ($tipoPontoTuristico->ponto_turisticos()->count() > 0) {
             return redirect()->array('/tipoPontoTuristico')->with('error', 'Tipo de ponto turistico possui dependentes');
          }else{

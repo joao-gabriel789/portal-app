@@ -44,18 +44,20 @@ class NoticiaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Noticia $noticia)
+    public function show($id)
     {
         //
+        $noticia = Noticia::find($id);
         return view('admin.noticias.show', compact('noticia'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Noticia $noticia)
+    public function edit($id)
     {
         //
+        $noticia = Noticia::find($id);
         $autores = Autor::all();
         $cadernos = Caderno::all();
         return view('admin.noticias.edit', compact('noticia','autores','cadernos'));
@@ -64,9 +66,10 @@ class NoticiaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateNoticiaRequest $request, Noticia $noticia)
+    public function update(UpdateNoticiaRequest $request, $id)
     {
         //
+        $noticia = Noticia::find($id);
         $noticia->update($request->all());
         return redirect()->array('/noticias')->with('success', 'Noticia atualizada com sucesso!');
     }
@@ -74,9 +77,10 @@ class NoticiaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Noticia $noticia)
+    public function destroy($id)
     {
         //
+        $noticia = Noticia::find($id);
         $noticia->delete();
         return redirect()->array('/noticias')->with('success', 'Noticia destruido com sucesso!');
     }

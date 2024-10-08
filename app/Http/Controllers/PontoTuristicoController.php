@@ -42,18 +42,20 @@ class PontoTuristicoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PontoTuristico $pontoTuristico)
+    public function show($id)
     {
         //
+        $pontoTuristico = PontoTuristico::find($id);
         return view('admin.pontoTuristicos.show', compact('ponto_turisticos'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PontoTuristico $pontoTuristico)
+    public function edit($id)
     {
         //
+        $pontoTuristico = PontoTuristico::find($id);
         $tipoPontoTuristico = TipoPontoTuristico::all();
         $enderecos = Endereco::all();
         return view('admin.pontoTuristicos.edit', compact('ponto_turisticos','enderecos','tipoPontoTuristico'));
@@ -62,9 +64,10 @@ class PontoTuristicoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePontoTuristicoRequest $request, PontoTuristico $pontoTuristico)
+    public function update(UpdatePontoTuristicoRequest $request, $id)
     {
         //
+        $pontoTuristico = PontoTuristico::find($id);
         $pontoTuristico->update($request->all());
         return redirect()->array('/pontoTuristicos')->with('success', 'Ponto turistico atualizado com sucesso!');
     }
@@ -72,9 +75,10 @@ class PontoTuristicoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PontoTuristico $pontoTuristico)
+    public function destroy($id)
     {
         //
+        $pontoTuristico = PontoTuristico::find($id);
         $pontoTuristico->delete();
         return redirect()->array('/pontoTuristicos')->with('success', 'Ponto turistico destruido com sucesso!');
     }
