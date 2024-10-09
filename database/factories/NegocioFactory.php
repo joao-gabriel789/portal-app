@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Endereco;
+use App\Models\TipoNegocio;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

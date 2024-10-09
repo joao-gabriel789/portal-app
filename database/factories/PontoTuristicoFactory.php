@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Endereco;
+use App\Models\TipoPontoTuristico;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,9 +21,9 @@ class PontoTuristicoFactory extends Factory
         $latlong = $this->faker->latitude($min = -90, $max = 90) .','. $this->faker->longitude($min = -180, $max = 180);
         return [
             //
-            'nome' => $this->faker->nome,
+            'nome' => $this->faker->streetName,
             'imagem' => $this->faker->imageUrl($width = 640, $height = 480, 'cats'),
-            'longitude_latitude' => $latlong,
+            'latitude_longitude' => $latlong,
             'descricao' => $this->faker->text,
             'como_chegar' => $this->faker->text,
             'ativo' => $this->faker->boolean,

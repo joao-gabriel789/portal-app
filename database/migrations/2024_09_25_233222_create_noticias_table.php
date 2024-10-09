@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('noticias', function (Blueprint $table) {
             $table->id();
             $table->dateTime('data');
-            
+            $table->string('titulo');
             $table->string('subtitulo');
             $table->text('texto');
             $table->unsignedBigInteger('id_autor');
