@@ -1,9 +1,14 @@
 <?php
 
+
 use App\Http\Controllers\CadernoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/faker', function () {
+    dd(PontoTuristico::factory()->create());
     return view('welcome');
 });
 

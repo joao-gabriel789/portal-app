@@ -18,6 +18,8 @@ class CidadeFactory extends Factory
     {
         return [
             //
+            'nome' => $this->faker->city ,
+            'id_estado' => Estado::pluck('id')->random()
         ];
     }
 }

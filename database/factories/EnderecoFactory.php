@@ -18,6 +18,9 @@ class EnderecoFactory extends Factory
     {
         return [
             //
+            'logradouro' => $this->faker->adrress ,
+            'cep' => $this->faker->numberBetween($min = 100000000, $max = 900000000),
+            'id_cidade' => Cidade::pluck('id')->random()
         ];
     }
 }
