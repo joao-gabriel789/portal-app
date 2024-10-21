@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCidadeRequest;
 use App\Http\Requests\UpdateCidadeRequest;
 use App\Models\Cidade;
+use App\Models\Estado;
 
 class CidadeController extends Controller
 {
@@ -57,7 +58,7 @@ class CidadeController extends Controller
         //
         $cidade = Cidade::find($id);
         $estados = Estado::all();
-        return view('admin.ciades.edit', compact('cidade','estados'));
+        return view('admin.cidades.edit', compact('cidade','estados'));
     }
 
     /**
@@ -78,7 +79,7 @@ class CidadeController extends Controller
     {
         //
         $cidade = Cidade::find($id);
-        if ($cidades->enderecos()->count() > 0) {
+        if ($cidade->enderecos()->count() > 0) {
             return redirect()->array('/cidades')->with('error', 'Cidade possui dependentes');
          }else{
             $cidade->delete();

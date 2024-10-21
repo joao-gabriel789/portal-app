@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreNoticiaRequest;
 use App\Http\Requests\UpdateNoticiaRequest;
+use App\Models\Autor;
+use App\Models\Caderno;
 use App\Models\Noticia;
 
 class NoticiaController extends Controller

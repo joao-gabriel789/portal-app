@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreNegocioRequest;
 use App\Http\Requests\UpdateNegocioRequest;
+use App\Models\Endereco;
 use App\Models\Negocio;
+use App\Models\TipoNegocio;
 
 class NegocioController extends Controller
 {

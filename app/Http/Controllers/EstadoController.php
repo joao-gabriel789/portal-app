@@ -75,10 +75,10 @@ class EstadoController extends Controller
     {
         //
         $estado = Estado::find($id);
-        if ($estados->cidades()->count() > 0) {
+        if ($estado->cidades()->count() > 0) {
             return redirect()->array('/cidades')->with('error', 'Estado possui dependentes');
          }else{
-            $estados->delete();
+            $estado->delete();
             return redirect()->array('/estados')->with('success', 'Estado destruido com sucesso!');
         }
     }

@@ -15,7 +15,7 @@ class TipoPontoTuristicoController extends Controller
     {
         //
         $tipoPontoTuristico = TipoPontoTuristico::paginate(25);
-        return view('admin.tipoPontoTuristicos.index', compact('tipo_ponto_turisticos'));
+        return view('admin.tiposPontosTuristicos.index', compact('tipo_ponto_turisticos'));
     }
 
     /**
@@ -24,7 +24,7 @@ class TipoPontoTuristicoController extends Controller
     public function create()
     {
         //
-        return view('admin.tipoPontoTuristicos.create');
+        return view('admin.tiposPontosTuristicos.create');
     }
 
     /**
@@ -34,7 +34,7 @@ class TipoPontoTuristicoController extends Controller
     {
         //
         TipoPontoTuristico::create($request->all());
-        return redirect()->array('/tipoPontoTuristicos')->with('success', 'Tipo de ponto turistico criado com sucesso!');
+        return redirect()->array('/tiposPontosTuristicos')->with('success', 'Tipo de ponto turistico criado com sucesso!');
     }
 
     /**
@@ -44,7 +44,7 @@ class TipoPontoTuristicoController extends Controller
     {
         //
         $tipoPontoTuristico = TipoPontoTuristico::find($id);
-        return view('admin.tipoPontoTuristicos.show', compact('tipo_ponto_turisticos'));
+        return view('admin.tiposPontosTuristicos.show', compact('tipo_ponto_turisticos'));
     }
 
     /**
@@ -54,7 +54,7 @@ class TipoPontoTuristicoController extends Controller
     {
         //
         $tipoPontoTuristico = TipoPontoTuristico::find($id);
-        return view('admin.tipoPontoTuristicos.edit', compact('tipo_ponto_turisticos'));
+        return view('admin.tiposPontosTuristicos.edit', compact('tipo_ponto_turisticos'));
     }
 
     /**
@@ -65,7 +65,7 @@ class TipoPontoTuristicoController extends Controller
         //
         $tipoPontoTuristico = TipoPontoTuristico::find($id);
         $tipoPontoTuristico->update($request->all());
-        return redirect()->array('/tipoPontoTuristicos')->with('success', 'Tipo de ponto turistico atualizado com sucesso!');
+        return redirect()->array('/tiposPontosTuristicos')->with('success', 'Tipo de ponto turistico atualizado com sucesso!');
     }
 
     /**
@@ -76,10 +76,10 @@ class TipoPontoTuristicoController extends Controller
         //
         $tipoPontoTuristico = TipoPontoTuristico::find($id);
         if ($tipoPontoTuristico->ponto_turisticos()->count() > 0) {
-            return redirect()->array('/tipoPontoTuristico')->with('error', 'Tipo de ponto turistico possui dependentes');
+            return redirect()->array('/tiposPontosTuristicos')->with('error', 'Tipo de ponto turistico possui dependentes');
          }else{
             $tipoPontoTuristico->delete();
-            return redirect()->array('/tipoPontoTuristicos')->with('success', 'Tipo de ponto turistico destruido com sucesso!');
+            return redirect()->array('/tiposPontosTuristicos')->with('success', 'Tipo de ponto turistico destruido com sucesso!');
         }
     }
 }

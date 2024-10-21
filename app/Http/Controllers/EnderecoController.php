@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEnderecoRequest;
 use App\Http\Requests\UpdateEnderecoRequest;
+use App\Models\Cidade;
 use App\Models\Endereco;
 
 class EnderecoController extends Controller
@@ -46,7 +47,7 @@ class EnderecoController extends Controller
     {
         //
         $endereco = Endereco::find($id);
-        return view('admin.endereco.show', compact('endereco'));
+        return view('admin.enderecos.show', compact('endereco'));
     }
 
     /**
@@ -78,7 +79,7 @@ class EnderecoController extends Controller
     {
         //
         $endereco = Endereco::find($id);
-        if ($endereco->negocios()->count() > 0 || $enderecos->ponto_turisticos()->count() > 0) {
+        if ($endereco->negocios()->count() > 0 || $endereco->ponto_turisticos()->count() > 0) {
             return redirect()->array('/enderecos')->with('error', 'Endereco possui dependentes');
          }else{
             $endereco->delete();

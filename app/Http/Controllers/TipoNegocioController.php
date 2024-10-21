@@ -15,7 +15,7 @@ class TipoNegocioController extends Controller
     {
         //
         $tipoNegocio = TipoNegocio::paginate(25);
-        return view('admin.tipoNegocios.index', compact('tipoNegocio'));
+        return view('admin.tiposNegocios.index', compact('tipoNegocio'));
     }
 
     /**
@@ -24,7 +24,7 @@ class TipoNegocioController extends Controller
     public function create()
     {
         //
-        return view('admin.tipoNegocios.create');
+        return view('admin.tiposNegocios.create');
     }
 
     /**
@@ -34,7 +34,7 @@ class TipoNegocioController extends Controller
     {
         //
         TipoNegocio::create($request->all());
-        return redirect()->array('/tipoNegocios')->with('success', 'Tipo de negocio criado com sucesso!');
+        return redirect()->array('/tiposNegocios')->with('success', 'Tipo de negocio criado com sucesso!');
     }
 
     /**
@@ -44,7 +44,7 @@ class TipoNegocioController extends Controller
     {
         //
         $tipoNegocio = TipoNegocio::find($id);
-        return view('admin.tipoNegocios.show', compact('tipoNegocio'));
+        return view('admin.tiposNegocios.show', compact('tipoNegocio'));
     }
 
     /**
@@ -54,7 +54,7 @@ class TipoNegocioController extends Controller
     {
         //
         $tipoNegocio = TipoNegocio::find($id);
-        return view('admin.tipoNegocios.edit', compact('tipoNegocio'));
+        return view('admin.tiposNegocios.edit', compact('tipoNegocio'));
     }
 
     /**
@@ -65,7 +65,7 @@ class TipoNegocioController extends Controller
         //
         $tipoNegocio = TipoNegocio::find($id);
         $tipoNegocio->update($request->all());
-        return redirect()->array('/tipoNegocios')->with('success', 'Tipo de negocio atualizado com sucesso!');
+        return redirect()->array('/tiposNegocios')->with('success', 'Tipo de negocio atualizado com sucesso!');
     }
 
     /**
@@ -76,10 +76,10 @@ class TipoNegocioController extends Controller
         //
         $tipoNegocio = TipoNegocio::find($id);
         if ($tipoNegocio->negocios()->count() > 0) {
-            return redirect()->array('/tipoNegocio')->with('error', 'Tipo de negocio possui dependentes');
+            return redirect()->array('/tiposNegocios')->with('error', 'Tipo de negocio possui dependentes');
          }else{
             $tipoNegocio->delete();
-            return redirect()->array('/tipoNegocios')->with('success', 'Tipo de negocio destruido com sucesso!');
+            return redirect()->array('/tiposNegocios')->with('success', 'Tipo de negocio destruido com sucesso!');
         }
     }
 }
